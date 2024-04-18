@@ -144,3 +144,12 @@ else:
 
 # print((playerHand.cards))
 # print(len(dealerHand.cards))
+
+# Git Commands:
+# git init (makes a new repo)
+# git clone (clones a repo from git to your local)
+# git add (adds files you wish to track changes on)
+# git commit (locking in new changes)
+# git push (push them to github)
+# git pull (pull code from github to local)
+# git checkout -b <branch name>
