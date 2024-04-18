@@ -1,0 +1,47 @@
+
+a=11
+b=12
+
+class Card:
+    numberOfCards=0
+    def __init__(self,number,suit,value):
+        self.number=number
+        self.suit=suit
+        self.value=value 
+        Card.numberOfCards+=1
+
+# c1=Card("1","spades",1)
+# print (Card.numberOfCards)
+# c2=Card("1","hearts",1)
+# print (Card.numberOfCards)
+# print (c1.suit) 
+
+cards = []
+
+suits = ["spades","hearts","clubs","diamonds"]
+facecards = ["jack","queen","king"]
+
+for number in range (2,a):
+    for suit in suits:
+        # for value in range (1,b):
+        cards.append(Card(str(number),suit,number))
+        print (Card.numberOfCards)
+        print (cards[Card.numberOfCards-1].number + " " + cards[Card.numberOfCards-1].suit + " " + str(cards[Card.numberOfCards-1].value))
+for face in facecards:
+    for suit in suits:
+        cards.append(Card(face,suit,10))
+        print (Card.numberOfCards)
+        print (cards[Card.numberOfCards-1].number + " " + cards[Card.numberOfCards-1].suit + " " + str(cards[Card.numberOfCards-1].value))
+
+
+
+
+
+
+print (cards[6].number + " " + cards[6].suit + " " + str(cards[6].value))
+
+
+
+
+
+

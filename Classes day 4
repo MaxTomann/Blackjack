@@ -1,0 +1,146 @@
+import random
+
+class Card:
+    numberOfCards=0
+    def __init__(self,number,suit,type,value):
+        self.number=number
+        self.suit=suit
+        self.type=type
+        self.value=value
+        Card.numberOfCards+=1
+    
+    
+class Hand:
+    def __init__ (self,cards):
+        self.cards=cards
+    def hit(self,card):
+        self.cards.append(card)
+    def getValue(self):
+        hasace = False
+        hv = 0
+        for card in self.cards:
+            hv+=card.value
+            print(card.value)
+            if card.type == "acecard":
+                hasace = True
+        if hv < 12 and hasace:
+            hv += 10
+        return (hv)
+
+
+# class Dealer(Hand):
+#     pass
+    
+
+# class Player(Hand):
+#     pass
+
+cards = []
+
+suits = ["spades","hearts","clubs","diamonds"]
+numcards = [2,3,4,5,6,7,8,9,10]
+facecards = ["jack","queen","king"]
+acecards = ["ace"]
+type = ["numcard","facecard","acecard"]
+
+for number in numcards:
+    for suit in suits:
+        # for value in range (1,b):
+        cards.append(Card(str(number),suit,"numcard",number))
+        print (Card.numberOfCards)
+        print (cards[Card.numberOfCards-1].number + " " + cards[Card.numberOfCards-1].suit)
+for face in facecards:
+    for suit in suits:
+        cards.append(Card(face,suit,"facecard",10))
+        print (Card.numberOfCards)
+        print (cards[Card.numberOfCards-1].number + " " + cards[Card.numberOfCards-1].suit)
+for ace in acecards:
+    for suit in suits:
+        cards.append(Card(ace,suit,"acecard",1))
+        print (Card.numberOfCards)
+        print (cards[Card.numberOfCards-1].number + " " + cards[Card.numberOfCards-1].suit)
+
+
+
+random.shuffle(cards)
+for card in cards:
+    print(card.number, card.suit)
+
+
+
+dealerHand = Hand([])
+playerHand = Hand([])
+
+
+dealerHand.hit(cards.pop(0))
+dealerHand.hit(cards.pop(0))
+playerHand.hit(cards.pop(0))
+playerHand.hit(cards.pop(0))
+
+
+pv = playerHand.getValue()
+print(pv)
+dv = dealerHand.getValue()
+
+print(dv)
+
+print("player hand: "+str(pv)+" dealer hand "+str(dv))
+
+
+while pv < 21:
+    answer = input("Hit or Stay")
+    if answer == "Hit":
+        playerHand.hit(cards.pop(0))
+        pv = playerHand.getValue()
+        print("player hand: "+str(pv)+" dealer hand "+str(dv))
+    elif answer == "Stay":
+        print("player hand: "+str(pv)+" dealer hand "+str(dv))
+        break
+    
+if pv > 21:
+    print("Dealer Wins")
+elif dv > pv:
+    print("Dealer Wins")
+else:
+    if dv != 21:
+        while dv < 17:
+            dealerHand.hit(cards.pop(0))
+            dv = dealerHand.getValue()
+        print("player hand: "+str(pv)+" dealer hand "+str(dv))
+    if dv > 21 or dv<pv:
+        print("Player Wins")
+    elif dv == pv:
+        print("Tie Game")
+    elif dv > pv:
+        print("Dealer Wins")
+
+# hasace = False
+# for card in playerHand.cards:
+#     pv+=card.value
+#     print(card.value)
+#     if card.type == "acecard":
+#         hasace = True
+# if pv < 12 and hasace:
+#     pv += 10
+
+# print(pv)
+
+# hasace = False
+# for card in dealerHand.cards:
+#     dv+=card.value
+#     print(card.value)
+#     if card.type == "acecard":
+#         hasace = True
+# if dv < 12 and hasace:
+#     dv += 10
+
+
+
+
+
+
+
+
+
+# print((playerHand.cards))
+# print(len(dealerHand.cards))
